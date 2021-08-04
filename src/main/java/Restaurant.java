@@ -80,7 +80,11 @@ public class Restaurant {
     }
 
     public Integer getOrderValue(List<Item> item){
-        return null;
+        int totalValue = 0;
+        for (Item myItem : item) {
+            totalValue += myItem.getPrice();
+        }
+        return totalValue;
     }
 
 }
