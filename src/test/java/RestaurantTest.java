@@ -79,4 +79,5 @@ class RestaurantTest {
         add.remove(1);
         assertEquals(total-afterTotal,restaurant.getOrderValue(add));
     }
+
 }
