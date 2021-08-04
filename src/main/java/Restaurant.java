@@ -79,4 +79,8 @@ public class Restaurant {
         return name;
     }
 
+    public Integer getOrderValue(List<Item> item){
+        return null;
+    }
+
 }

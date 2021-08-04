@@ -2,12 +2,15 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class RestaurantTest {
     Restaurant restaurant;
     //REFACTOR ALL THE REPEATED LINES OF CODE
+    List<Item> add = new ArrayList<Item>();
     public void restaurantCreation(){
         LocalTime openingTime = LocalTime.parse("10:30:00");
         LocalTime closingTime = LocalTime.parse("22:00:00");
@@ -59,4 +62,21 @@ class RestaurantTest {
                 ()->restaurant.removeFromMenu("French fries"));
     }
     //<<<<<<<<<<<<<<<<<<<<<<<MENU>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+    @Test
+    public void get_total_order_value_when_collection_of_items_selected(){
+        restaurantCreation();
+        add = restaurant.getMenu();
+        assertEquals(388,restaurant.getOrderValue(add));
+    }
+
+    @Test
+    public void get_total_order_value_when_an_item_removed(){
+        restaurantCreation();
+        add = restaurant.getMenu();
+        int total = restaurant.getOrderValue(add);
+        int afterTotal = add.get(1).getPrice();
+        add.remove(1);
+        assertEquals(total-afterTotal,restaurant.getOrderValue(add));
+    }
 }
