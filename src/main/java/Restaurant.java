@@ -18,15 +18,31 @@ public class Restaurant {
     }
 
     public boolean isRestaurantOpen() {
-        return true;
-        //DELETE ABOVE STATEMENT AND WRITE CODE HERE
+        LocalTime time = LocalTime.now();
+        int isStillOpen = time.compareTo(closingTime);
+        int isOpen = time.compareTo(openingTime);
+        if(isStillOpen<0&&isOpen>=0){
+            return true;
+        }
+        return false;
     }
 
     public LocalTime getCurrentTime(){ return  LocalTime.now(); }
 
+    public LocalTime getOpeningTime() { return openingTime; }
+
+    public void setOpeningTime(LocalTime openingTime) {
+        this.openingTime = openingTime;
+    }
+
+    public LocalTime getClosingTime() { return closingTime; }
+
+    public void setClosingTime(LocalTime closingTime) {
+        this.closingTime = closingTime;
+    }
+
     public List<Item> getMenu() {
-        return null;
-        //DELETE ABOVE RETURN STATEMENT AND WRITE CODE HERE
+        return this.menu;
     }
 
     private Item findItemByName(String itemName){
